@@ -2,8 +2,8 @@
 
 Tugas UTS Pemrograman Web, Sarjana Terapan Manajemen Informatika, Semester 3.
 
-- **Nama / NIM:** (isi nama dan NIM Anda)
-- **Alamat website:** https://USERNAME.github.io/NAMA-REPO/ (ganti dengan alamat GitHub Pages Anda)
+- **Nama / NIM:** Ella Dea Azahra / 25091397098
+- **Alamat website:** https://deazhraa.github.io/kopi-lereng/
 - **Dokumen SRS:** [SRS.md](SRS.md)
 
 ## Cara melihat halaman
@@ -57,15 +57,15 @@ Tiga teknik yang diterapkan (semuanya ada di `js/script.js`):
 
 | No | Teknik | Penerapan | Kode kunci |
 |----|--------|-----------|------------|
-| 1 | **Event Handling** | Website bereaksi saat tombol tema, tombol menu mobile, filter kategori, tombol "Tambah", dan tombol "Pesan via WhatsApp" diklik | `addEventListener("click", ...)` |
-| 2 | **DOM Manipulation** | Kartu menu dan ringkasan pesanan dibuat dari data lalu dipasang ke halaman; jumlah dan total harga diperbarui; tombol pesan dan teks kosong diatur lewat `disabled` dan `hidden` | `innerHTML`, `textContent`, `getElementById`, `querySelectorAll` |
-| 3 | **Style & Animation** | Tema gelap/terang diganti lewat `dataset.theme`; navigasi mobile dibuka dengan `classList.toggle`; angka jumlah pesanan membesar sebentar lewat kelas `pop` | `dataset.theme`, `classList.add/remove/toggle`, CSS `transition` dan `@keyframes` |
+| 1 | **Event Handling** | Klik tombol tema, tombol menu mobile, filter kategori, tombol "Tambah" pada menu, dan tombol "Pesan via WhatsApp" | `addEventListener("click", ...)` |
+| 2 | **DOM Manipulation** | Kartu menu dibuat dari array data; ringkasan pesanan (daftar item), badge jumlah, dan total harga diperbarui otomatis; tombol pesan dan teks kosong diatur lewat `disabled` dan `hidden` | `createElement`, `append`, `textContent`, `setAttribute`, `querySelectorAll` |
+| 3 | **Style & Animation** | Tema gelap/terang diganti lewat `dataset.theme`; badge pesanan diberi kelas `pop` untuk memutar animasi CSS; tombol "Dipilih" dan filter aktif berubah gaya lewat atribut | `dataset.theme`, `classList.add/remove`, CSS `transition` dan `@keyframes` |
 
 **Alur kerja fitur menu:**
 1. Data menu disimpan dalam array `menu`.
-2. Fungsi `tampilkanMenu(kategori)` mengulang (loop) isi array, menyusun kartu dalam bentuk teks HTML, lalu memasangnya ke halaman dengan `innerHTML`.
-3. Tombol filter yang diklik memanggil `tampilkanMenu()` dengan kategori yang dipilih.
-4. Tombol "Tambah" memasukkan id menu ke array `pesanan` (klik lagi untuk membatalkan). Setelah itu `perbaruiPesanan()` menghitung jumlah dan total harga, membuat ulang daftar "Ringkasan pesanan", dan memutar animasi `pop` pada angka jumlah.
+2. Fungsi `render(kategori)` menyaring array, lalu membuat kartu dengan `createElement`.
+3. Tombol filter memanggil `render()` dengan kategori yang dipilih (event handling).
+4. Tombol "Tambah" memasukkan id menu ke `cart` (sebuah `Set`), lalu `updateCart()` menghitung jumlah dan total harga, membuat ulang daftar "Ringkasan pesanan", dan memutar animasi `pop` pada badge.
 5. Tombol "Pesan via WhatsApp" aktif saat ada menu dipilih. Saat diklik, JavaScript menyusun teks pesanan dan membuka `https://wa.me/NOMOR?text=...` sehingga pesan siap dikirim ke kedai.
 
 > Nomor WhatsApp kedai diatur di konstanta `NOMOR_WA` pada bagian atas `js/script.js` (format `62812...`, tanpa `+`).
@@ -75,7 +75,3 @@ Tiga teknik yang diterapkan (semuanya ada di `js/script.js`):
 Kode ditulis mengikuti HTML5 dan CSS3. Validasi dapat dicek di:
 - https://validator.w3.org/ (HTML)
 - https://jigsaw.w3.org/css-validator/ (CSS)
-
-## Sumber
-
-Kode dan teks dibuat untuk tugas ini. Foto hero: (isi sumber dan fotografer, misalnya Unsplash/Pexels). Font memakai Google Fonts (lisensi terbuka).
